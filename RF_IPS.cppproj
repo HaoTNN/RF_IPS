@@ -5,7 +5,7 @@
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
     <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
-    <avrdevice>atmega328p</avrdevice>
+    <avrdevice>atmega32u4</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>CPP</Language>
@@ -27,13 +27,14 @@
     <UncachedRange />
     <BootSegment>0</BootSegment>
     <AsfFrameworkConfig>
-      <framework-data xmlns="">
+      <framework-data>
         <options />
         <configurations />
         <files />
         <documentation help="" />
+        <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.7.2" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.3.0" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -49,12 +50,23 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
+            <Value>__AVR_ATmega32u4__</Value>
+            <Value>__AVR_ATmega32U4__</Value>
+            <Value>ARDUINO=101</Value>
+            <Value>ARDUINO_MAIN</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
+            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>J:\arduino-1.0.5-r2\hardware\arduino\cores\arduino</Value>
-            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\standard</Value>
+            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\leonardo</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI\utility</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf\utility</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\avr\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\</Value>
@@ -71,16 +83,23 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>ARDUINO=103</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega32u4__</Value>
+            <Value>__AVR_ATmega32U4__</Value>
+            <Value>ARDUINO=101</Value>
+            <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
+            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>J:\arduino-1.0.5-r2\hardware\arduino\cores\arduino</Value>
-            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\standard</Value>
+            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\leonardo</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI\utility</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf\utility</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\avr\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\</Value>
@@ -99,6 +118,75 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <arduino.board.name>leonardo</arduino.board.name>
+        <arduino.board.desc>Arduino Leonardo</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Leonardo
+upload.protocol=avr109
+upload.maximum_size=28672
+upload.speed=57600
+upload.disable_flushing=true
+bootloader.low_fuses=0xff
+bootloader.high_fuses=0xd8
+bootloader.extended_fuses=0xcb
+bootloader.path=caterina
+bootloader.file=Caterina-Leonardo.hex
+bootloader.unlock_bits=0x3F
+bootloader.lock_bits=0x2F
+build.mcu=atmega32u4
+build.f_cpu=16000000L
+build.vid=0x2341
+build.pid=0x8036
+build.core=arduino
+build.variant=leonardo
+runtime.ide.path=J:\arduino-1.0.5-r2
+build.system.path=J:\arduino-1.0.5-r2\hardware\arduino\system
+runtime.ide.version=101
+originalid=leonardo
+vm.platform.root.path=J:\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
+vm.core.include=arduino.h
+ide.hint=Arduino 0023 and 1.0.x Ide
+ide.location.key=Arduino
+ide.location.ide.winreg=Arduino 1.0.x Application
+ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook
+ide.location.sketchbook.preferences=sketchbook.path
+ide.location.sketchbook.default=%MYDOCUMENTS%\arduino
+ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt
+ide.default.package=arduino
+ide.default.platform=avr
+ide.multiplatform=true
+ide.includes=arduino.h
+ide.platformswithoutpackage=true
+ide.includes.fallback=wprogram.h
+ide.extension=ino
+ide.extension.fallback=pde
+ide.versionLTEQ=149
+ide.exe=arduino.exe
+ide.hosts=atmel
+ide.url=http://arduino.cc/en/Main/Software
+vm.debug=true
+software=ARDUINO
+ide.appid=arduino10x
+location.sketchbook=C:\Users\hao\Documents\Arduino
+build.board=AVR_LEONARDO
+vm.boardsource.path=J:\arduino-1.0.5-r2\hardware\arduino
+vm.platformname.name=avr
+build.arch=AVR
+</arduino.board.property_bag>
+        <arduino.build.mcu>atmega32u4</arduino.build.mcu>
+        <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
+        <arduino.build.core>arduino</arduino.build.core>
+        <arduino.upload.protocol>avr109</arduino.upload.protocol>
+        <arduino.upload.speed>57600</arduino.upload.speed>
+        <arduino.upload.maximum_size>28672</arduino.upload.maximum_size>
+        <visualmicro.application.name>arduino10x</visualmicro.application.name>
+        <visualmicro.package.name>arduino</visualmicro.package.name>
+        <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <VM_ReCompileCoreOnMcuMacroChange>0</VM_ReCompileCoreOnMcuMacroChange>
+        <arduino.upload.port>COM10</arduino.upload.port>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
@@ -111,12 +199,23 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
+            <Value>__AVR_ATmega32u4__</Value>
+            <Value>__AVR_ATmega32U4__</Value>
+            <Value>ARDUINO=101</Value>
+            <Value>ARDUINO_MAIN</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
+            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>J:\arduino-1.0.5-r2\hardware\arduino\cores\arduino</Value>
-            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\standard</Value>
+            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\leonardo</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI\utility</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf\utility</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\avr\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\</Value>
@@ -133,16 +232,23 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>ARDUINO=103</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega32u4__</Value>
+            <Value>__AVR_ATmega32U4__</Value>
+            <Value>ARDUINO=101</Value>
+            <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
+            <Value>__cplusplus</Value>
           </ListValues>
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>J:\arduino-1.0.5-r2\hardware\arduino\cores\arduino</Value>
-            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\standard</Value>
+            <Value>J:\arduino-1.0.5-r2\hardware\arduino\variants\leonardo</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\SPI\utility</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf</Value>
+            <Value>J:\arduino-1.0.5-r2\libraries\Mirf\utility</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\include\avr\</Value>
             <Value>j:\arduino-1.0.5-r2\hardware\tools\avr\avr\</Value>
@@ -161,11 +267,119 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
+    <VisualMicroSettings>
+      <VisualMicroSettings>
+        <arduino.board.name>leonardo</arduino.board.name>
+        <arduino.board.desc>Arduino Leonardo</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Leonardo
+upload.protocol=avr109
+upload.maximum_size=28672
+upload.speed=57600
+upload.disable_flushing=true
+bootloader.low_fuses=0xff
+bootloader.high_fuses=0xd8
+bootloader.extended_fuses=0xcb
+bootloader.path=caterina
+bootloader.file=Caterina-Leonardo.hex
+bootloader.unlock_bits=0x3F
+bootloader.lock_bits=0x2F
+build.mcu=atmega32u4
+build.f_cpu=16000000L
+build.vid=0x2341
+build.pid=0x8036
+build.core=arduino
+build.variant=leonardo
+runtime.ide.path=J:\arduino-1.0.5-r2
+build.system.path=J:\arduino-1.0.5-r2\hardware\arduino\system
+runtime.ide.version=101
+originalid=leonardo
+vm.platform.root.path=J:\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
+vm.core.include=arduino.h
+ide.hint=Arduino 0023 and 1.0.x Ide
+ide.location.key=Arduino
+ide.location.ide.winreg=Arduino 1.0.x Application
+ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook
+ide.location.sketchbook.preferences=sketchbook.path
+ide.location.sketchbook.default=%MYDOCUMENTS%\arduino
+ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt
+ide.default.package=arduino
+ide.default.platform=avr
+ide.multiplatform=true
+ide.includes=arduino.h
+ide.platformswithoutpackage=true
+ide.includes.fallback=wprogram.h
+ide.extension=ino
+ide.extension.fallback=pde
+ide.versionLTEQ=149
+ide.exe=arduino.exe
+ide.hosts=atmel
+ide.url=http://arduino.cc/en/Main/Software
+vm.debug=true
+software=ARDUINO
+ide.appid=arduino10x
+location.sketchbook=C:\Users\hao\Documents\Arduino
+build.board=AVR_LEONARDO
+vm.boardsource.path=J:\arduino-1.0.5-r2\hardware\arduino
+vm.platformname.name=avr
+build.arch=AVR
+</arduino.board.property_bag>
+        <arduino.build.mcu>atmega32u4</arduino.build.mcu>
+        <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
+        <arduino.build.core>arduino</arduino.build.core>
+        <arduino.upload.protocol>avr109</arduino.upload.protocol>
+        <arduino.upload.speed>57600</arduino.upload.speed>
+        <arduino.upload.maximum_size>28672</arduino.upload.maximum_size>
+        <visualmicro.application.name>arduino10x</visualmicro.application.name>
+        <visualmicro.package.name>arduino</visualmicro.package.name>
+        <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <VM_ReCompileCoreOnMcuMacroChange>0</VM_ReCompileCoreOnMcuMacroChange>
+        <arduino.upload.port>COM10</arduino.upload.port>
+      </VisualMicroSettings>
+    </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Mirf\keywords">
+      <SubType>compile</SubType>
+    </None>
     <None Include="RF_IPS.ino">
       <SubType>compile</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mirf" />
+    <Folder Include="Visual Micro\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mirf\Mirf.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mirf\Mirf.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mirf\MirfHardwareSpiDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mirf\MirfHardwareSpiDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mirf\MirfSpiDriver.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mirf\MirfSpiDriver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Mirf\nRF24L01.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="scheduler.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Visual Micro\.RF_IPS.vsarduino.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
