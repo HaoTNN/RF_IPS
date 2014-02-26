@@ -5,6 +5,7 @@
 #include <Mirf.h>
 #include <nRF24L01.h>
 #include <MirfHardwareSpiDriver.h>
+#include "micros.h"
 
 //////Task declarations///////
 task tasks[2];
@@ -28,9 +29,10 @@ unsigned long ledSM_timerThreshold = 50;		//in millis
 ///////////////////////////
 
 //////pingSM variables//////
-unsigned long pingSM_recoveryMax = 2000;
-unsigned long pingSM_timeoutMax = 250;
-unsigned long pingSM_waitingPeriod = 200;
+//All times are in millis unless otherwise stated
+unsigned long pingSM_recoveryMax = 2000;		//Time to take to attempt to recover from module failure
+unsigned long pingSM_timeoutMax = 1000;			//Max time to wait to receive data
+unsigned long pingSM_waitingPeriod = 200;		//Time to cooldown before next send
 unsigned long pingSM_timeCnt = 0;
 const unsigned int payloadSize = sizeof(unsigned long);
 unsigned long pingSM_time;
@@ -105,59 +107,59 @@ int pingSM_Tick( int states ){
 	////TRANSITIONS
 	switch( states ){
 		case -1:
-			states = waiting;
-			break;
+		states = waiting;
+		break;
 		case waiting:
-			if( !Mirf.isSending() && Mirf.dataReady() ){
-				states = getData;
-				Serial.print("Getting data... ");
-				Mirf.getData((byte*) &pingSM_time);
-				Serial.print(" Got: ");
-				Serial.print(pingSM_time);
-			}
-			else{
-				states = waiting;
-			}
-			break;
-		case getData:
-			states = sendData;
-			Serial.print(" Sending: ");
+		if( !Mirf.isSending() && Mirf.dataReady() ){
+			states = getData;
+			Serial.print("Getting data... ");
+			Mirf.getData((byte*) &pingSM_time);
+			Serial.print(" Got: ");
 			Serial.print(pingSM_time);
-			Mirf.send((byte*) &pingSM_time);
-			pingSM_timeCnt = 0;
-			break;
-		case sendData:
-			if( pingSM_timeCnt >= pingSM_timeoutMax && Mirf.isSending() ){
-				states = waiting;
-				pingSM_timeCnt = 0;
-				Serial.println(" ... Error sending");
-			}
-			else if(Mirf.isSending() && pingSM_timeCnt < pingSM_timeoutMax ){
-				states = sendData;
-			}
-			else{
-				states = waiting;
-				Serial.println(" ... Sent");
-			}
-			break;
-		default:
+		}
+		else{
 			states = waiting;
-			break;
+		}
+		break;
+		case getData:
+		states = sendData;
+		Serial.print(" Sending: ");
+		Serial.print(pingSM_time);
+		Mirf.send((byte*) &pingSM_time);
+		pingSM_timeCnt = 0;
+		break;
+		case sendData:
+		if( pingSM_timeCnt >= pingSM_timeoutMax && Mirf.isSending() ){
+			states = waiting;
+			pingSM_timeCnt = 0;
+			Serial.println(" ... Error sending");
+		}
+		else if(Mirf.isSending() && pingSM_timeCnt < pingSM_timeoutMax ){
+			states = sendData;
+		}
+		else{
+			states = waiting;
+			Serial.println(" ... Sent");
+		}
+		break;
+		default:
+		states = waiting;
+		break;
 	}
 	
 	////ACTIONS
 	switch( states ){
 		case -1:
-			break;
+		break;
 		case waiting:
-			break;
+		break;
 		case getData:
-			break;
+		break;
 		case sendData:
-			pingSM_timeCnt++;
-			break;
+		pingSM_timeCnt++;
+		break;
 		default:
-			break;
+		break;
 	}
 	return states;
 }
@@ -166,6 +168,7 @@ int pingSM_Tick( int states ){
 
 void setup()
 {
+	micros_p_init();
 	Serial.begin(9600);
 	
 	pinMode(ledSM_ledPin, OUTPUT);
@@ -195,9 +198,11 @@ void setup()
 	Mirf.setRADDR( (byte*) "rec1" );
 	Mirf.setTADDR( (byte*) "trans1");
 	Mirf.payload = payloadSize;
-	//Mirf.channel = 90;
+	Mirf.channel = 90;
 	Mirf.config();
 	
+	Mirf.setPower(RF_0);
+	Mirf.setDatarate(RF_2MBPS);
 
 	timerSet(periodGCD);
 	timerOn();
