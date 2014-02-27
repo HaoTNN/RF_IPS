@@ -22,7 +22,5 @@ int pingSM_Tick( int states );
 #include "J:\arduino-1.0.5-r2\hardware\arduino\variants\leonardo\pins_arduino.h" 
 #include "J:\arduino-1.0.5-r2\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\Users\hao\Documents\Arduino\RF_IPS\RF_IPS.ino"
-#include "C:\Users\hao\Documents\Arduino\RF_IPS\micros.h"
-#include "C:\Users\hao\Documents\Arduino\RF_IPS\printf.h"
 #include "C:\Users\hao\Documents\Arduino\RF_IPS\scheduler.h"
 #include "C:\Users\hao\Documents\Arduino\RF_IPS\timer.h"
