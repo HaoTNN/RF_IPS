@@ -8,22 +8,14 @@
 #include <avr/pgmspace.h>
 
 //////Task declarations///////
-task tasks[2];
-unsigned char numTasks = 2;
+task tasks[1];
+unsigned char numTasks = 1;
 
 unsigned char ledSM_period = 1;
 unsigned char pingSM_period = 1;
 
 unsigned char periodGCD = 1;
 //////////////////////////////////
-
-uint8_t ledSM_ledPin = 13;						//pin to light up LED
-uint8_t ledSM_buttonPin = 4;					//pin to activate LED
-
-//////ledSM variables//////
-unsigned long ledSM_timer = 0;					//counting time that LED is on/off
-unsigned long ledSM_timerThreshold = 50;		//in millis
-///////////////////////////
 
 //////RF Module Settings//////
 const unsigned int payloadSize = sizeof(unsigned long);		//Size of our payload
@@ -47,66 +39,8 @@ char pingSM_commandBuffer[12];
 ////////////////////////////
 
 //STATES DECLARATIONS//
-enum ledSM_states{ begin, ledOn, ledOff };
 enum pingSM_states{ waiting, checkCommand, getData, sendData };
 ///////////////////////
-
-//////ledSM State machine function
-int ledSM_tick( int states ){
-	//////TRANSITIONS
-	switch( states ){
-		case -1:
-		states = begin;
-		break;
-		case begin:
-		if( digitalRead(ledSM_buttonPin) == 1 ){
-			states = ledOn;
-		}
-		else{
-			states = begin;
-		}
-		break;
-		case ledOn:
-		if( ledSM_timer >= ledSM_timerThreshold ){
-			states = ledOff;
-			ledSM_timer = 0;
-		}
-		else{
-			states = ledOn;
-		}
-		break;
-		case ledOff:
-		if( ledSM_timer >= ledSM_timerThreshold ){
-			states = begin;
-			ledSM_timer = 0;
-		}
-		else{
-			states = ledOff;
-		}
-		break;
-		default:
-		break;
-	}
-
-	//////ACTIONS
-	switch( states ){
-		case -1:
-			digitalWrite( ledSM_ledPin, LOW );
-			break;
-		case ledOn:
-			digitalWrite( ledSM_ledPin, HIGH );
-			ledSM_timer++;
-			break;
-		case ledOff:
-			digitalWrite( ledSM_ledPin, LOW );
-			ledSM_timer++;
-			break;
-		default:
-			digitalWrite( ledSM_ledPin, LOW );
-			break;
-	}
-	return states;
-}
 
 int pingSM_Tick( int states ){
 	////TRANSITIONS
@@ -212,21 +146,10 @@ void setup()
 	delay(2000);
 	Serial.println("Begin setup");
 	
-	pinMode(ledSM_ledPin, OUTPUT);
-	pinMode(ledSM_buttonPin, INPUT);
-
-	digitalWrite(ledSM_buttonPin, HIGH);		//Enable pull-up resistors
-	
 	tasks[0].state = -1;
 	tasks[0].elapsedTime = 0;
-	tasks[0].period = ledSM_period;
-	tasks[0].TickFunc = &ledSM_tick;
-	
-	tasks[1].state = -1;
-	tasks[1].elapsedTime = 0;
-	tasks[1].period = pingSM_period;
-	tasks[1].TickFunc = &pingSM_Tick;
-	
+	tasks[0].period = pingSM_period;
+	tasks[0].TickFunc = &pingSM_Tick;
 	
 	//////NRF24L01+ SETUP//////
 	Mirf.csnPin = 6;
