@@ -183,7 +183,7 @@ build.arch=AVR
         <visualmicro.package.name>arduino</visualmicro.package.name>
         <visualmicro.platform.name>avr</visualmicro.platform.name>
         <VM_ReCompileCoreOnMcuMacroChange>0</VM_ReCompileCoreOnMcuMacroChange>
-        <arduino.upload.port>COM6</arduino.upload.port>
+        <arduino.upload.port>COM10</arduino.upload.port>
         <VM_ReCompileCoreOnProjectMacroChange>
         </VM_ReCompileCoreOnProjectMacroChange>
       </VisualMicroSettings>
@@ -334,16 +334,13 @@ build.arch=AVR
         <visualmicro.package.name>arduino</visualmicro.package.name>
         <visualmicro.platform.name>avr</visualmicro.platform.name>
         <VM_ReCompileCoreOnMcuMacroChange>0</VM_ReCompileCoreOnMcuMacroChange>
-        <arduino.upload.port>COM6</arduino.upload.port>
+        <arduino.upload.port>COM10</arduino.upload.port>
         <VM_ReCompileCoreOnProjectMacroChange>
         </VM_ReCompileCoreOnProjectMacroChange>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="printf.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="RF_IPS.ino">
       <SubType>compile</SubType>
     </Compile>
