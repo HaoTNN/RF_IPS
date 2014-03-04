@@ -160,6 +160,10 @@ void setup()
 {
 	Serial.begin(9600);
 	delay(2000);
+<<<<<<< HEAD:RF_IPS/RF_IPS.ino
+=======
+	Serial.println("Begin setup");
+>>>>>>> 0b3efcfd380d1d51c25c9ab60b76d5adb43063c9:RF_IPS/RF_IPS.ino
 	
 	tasks[0].state = -1;
 	tasks[0].elapsedTime = 0;
