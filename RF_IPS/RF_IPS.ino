@@ -77,8 +77,7 @@ int pingSM_Tick( int states ){
 				pingSM_timeCnt = 0;
 				strcpy_P( pingSM_commandBuffer, pingSM_commandACK );
 				Mirf.send((byte*) &pingSM_commandBuffer );
-				Mirf.payload = sizeof(unsigned long);
-				Mirf.setPayload();
+				Mirf.setPayload( sizeof(unsigned long) );
 				if( DEBUG_MODE ){
 					Serial.print(" Sending " );
 					Serial.print( pingSM_commandBuffer );
@@ -100,8 +99,7 @@ int pingSM_Tick( int states ){
 			}
 			else{
 				states = waiting;
-				Mirf.payload = sizeof( pingSM_commandBuffer );
-				Mirf.setPayload();
+				Mirf.setPayload( sizeof( pingSM_commandBuffer ) );
 				if( DEBUG_MODE ){
 					Serial.println(" Error: timeout listening for data after ACK");
 				}
@@ -111,8 +109,7 @@ int pingSM_Tick( int states ){
 			if( pingSM_timeCnt >= pingSM_timeoutMax && Mirf.isSending() ){
 				states = waiting;
 				pingSM_timeCnt = 0;
-				Mirf.payload = sizeof( pingSM_commandBuffer );
-				Mirf.setPayload();
+				Mirf.setPayload( sizeof( pingSM_commandBuffer ) );
 				if( DEBUG_MODE ){
 					Serial.println(" ... Error sending");
 				}
@@ -122,8 +119,7 @@ int pingSM_Tick( int states ){
 			}
 			else{
 				states = waiting;
-				Mirf.payload = sizeof( pingSM_commandBuffer );
-				Mirf.setPayload();
+				Mirf.setPayload( sizeof( pingSM_commandBuffer ) );
 				if( DEBUG_MODE ){
 					Serial.println(" ... Sent");
 				}
@@ -160,10 +156,8 @@ void setup()
 {
 	Serial.begin(9600);
 	delay(2000);
-<<<<<<< HEAD:RF_IPS/RF_IPS.ino
-=======
+
 	Serial.println("Begin setup");
->>>>>>> 0b3efcfd380d1d51c25c9ab60b76d5adb43063c9:RF_IPS/RF_IPS.ino
 	
 	tasks[0].state = -1;
 	tasks[0].elapsedTime = 0;
